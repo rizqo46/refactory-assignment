@@ -17,12 +17,20 @@ const googleAuth = async (req, res) => {
         
         User.findOne({email: payload['email']}).then((currentUser) => {
             if(currentUser){
+                req.session.isAuth = true;
+                req.session.email = currentUser.email;
+                req.session.cookie.maxAge = 60*1000;
+                req.session.cookie.secure = true;
                 res.json(currentUser)
             } else {
                 new User({
                     name: payload['name'],
                     email: payload['email']
                 }).save().then((newUser) => {
+                    req.session.isAuth = true;
+                    req.session.email = currentUser.email;
+                    req.session.cookie.maxAge = 60*1000;
+                    req.session.cookie.secure = true;
                     res.json(newUser);
                 });
             }
@@ -30,6 +38,7 @@ const googleAuth = async (req, res) => {
 
     } catch (err) {
         console.log(err.message);
+        req.session.error = "Invalid Credentials";
         res.status(401).json({error: {message: err.message}});
     }
 }

@@ -3,6 +3,7 @@ const authController = require('../controllers/auth');
 const passport = require('passport');
 
 router.get('/', (req, res) => {
+	console.log(req.session);
 	res.render('auth')
 });
 router.get('/google-auth', passport.authenticate('google', {

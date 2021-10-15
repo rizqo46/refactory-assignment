@@ -1,8 +1,10 @@
 const express = require('express');
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 const path = require('path');
 const logger = require('morgan');
-const passportSetup = require('./configs/passport');
 const passport = require('passport');
+const passportSetup = require('./configs/passport');
 const mongoSanitize = require('express-mongo-sanitize');
 const mongoose = require('mongoose');
 const authRouter = require('./routers/auth');
@@ -31,6 +33,19 @@ app.use(mongoSanitize({
     onSanitize: ({ req, key }) => {
       console.warn(`This request[${key}] is sanitized`);
 }}));
+
+const store = new MongoDBStore({
+    uri: MONGODB_URI,
+    collection: "sessions",
+});
+  
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+}));
+
 app.use(authRouter);
 
 try {
@@ -40,6 +55,23 @@ try {
         useUnifiedTopology: true
     });
     console.log('Connection has been established successfully.');
+    const store = new MongoDBStore({
+        uri: MONGODB_URI,
+        collection: "sessions"
+    });
+      
+    app.use(session({
+        secret: process.env.SESSION_SECRET,
+        cookie: {
+            secure: true,
+            maxAge: 1000 * 60
+        },
+        store: store,
+        resave: true,
+        saveUninitialized: true
+    }));
+    
+    app.use(authRouter);
     app.listen(PORT, (err) => {
         if (err) {
             return console.log('something bad happened', err)
