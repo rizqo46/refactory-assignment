@@ -1,4 +1,5 @@
 const {OAuth2Client} = require('google-auth-library');
+const User = require('../models/mongoose/user.js');
 require('dotenv').config();
 const CLIENT_ID = process.env.GOOGLE_CLIENTID
 const client = new OAuth2Client(CLIENT_ID);
@@ -13,12 +14,23 @@ const googleAuth = async (req, res) => {
             //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
         });
         const payload = ticket.getPayload();
-        console.log(payload);
-        res.send(payload['email']);
+        
+        User.findOne({email: payload['email']}).then((currentUser) => {
+            if(currentUser){
+                res.json(currentUser)
+            } else {
+                new User({
+                    name: payload['name'],
+                    email: payload['email']
+                }).save().then((newUser) => {
+                    res.json(newUser);
+                });
+            }
+        });
 
     } catch (err) {
         console.log(err.message);
-        res.status(401).send(err.message);
+        res.status(401).json({error: {message: err.message}});
     }
 }
 
