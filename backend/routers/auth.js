@@ -2,11 +2,8 @@ const router = require('express').Router();
 const authController = require('../controllers/auth');
 const passport = require('passport');
 
-router.get('/', (req, res) => {
-	console.log(req.session);
-	res.render('auth')
-});
-router.get('/google-auth', passport.authenticate('google', {
+router.get('/', authController.homePage);
+router.get('/google-auth', authController.googleMiddleware, passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 router.get('/google-auth/auth', 

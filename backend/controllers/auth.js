@@ -4,6 +4,31 @@ require('dotenv').config();
 const CLIENT_ID = process.env.GOOGLE_CLIENTID
 const client = new OAuth2Client(CLIENT_ID);
 
+const homePage = (req, res) => {
+    
+	if (req.session.isAuth) {
+        res.render('auth', {
+            path: '/logout',
+            text: "You already logged in click button bellow to logout",
+            buttonText: "Logout"
+        });
+    } else {
+        res.render('auth', {
+            path: '/google-auth',
+            text: "Click the button bellow to login/register with google",
+            buttonText: "Register/Login with Google"
+        });
+    }
+}
+
+const googleMiddleware = (req, res, next) => {
+    if (req.session.isAuth) {
+        res.redirect('/')
+    } else {
+        next()
+    }
+}
+
 const googleAuth = async (req, res) => {
     try {
         const token = req.user;
@@ -20,7 +45,6 @@ const googleAuth = async (req, res) => {
                 req.session.isAuth = true;
                 req.session.email = currentUser.email;
                 req.session.cookie.maxAge = 60*1000;
-                req.session.cookie.secure = true;
                 res.json(currentUser)
             } else {
                 new User({
@@ -30,7 +54,6 @@ const googleAuth = async (req, res) => {
                     req.session.isAuth = true;
                     req.session.email = currentUser.email;
                     req.session.cookie.maxAge = 60*1000;
-                    req.session.cookie.secure = true;
                     res.json(newUser);
                 });
             }
@@ -43,4 +66,4 @@ const googleAuth = async (req, res) => {
     }
 }
 
-module.exports = {googleAuth}
+module.exports = {googleAuth, googleMiddleware, homePage}
