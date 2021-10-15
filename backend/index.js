@@ -33,14 +33,19 @@ app.use(mongoSanitize({
 }}));
 app.use(authRouter);
 
-mongoose.connect(MONGODB_URI, {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then((db) => {
-  console.log('Connected to database');
-  app.listen(PORT, () => {
-    console.log('Listening in port :', PORT);
-  });
-  
-}).catch((err) => console.log(err));
+try {
+    mongoose.connect(MONGODB_URI, {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+    console.log('Connection has been established successfully.');
+    app.listen(PORT, (err) => {
+        if (err) {
+            return console.log('something bad happened', err)
+        }
+        console.log(`server is listening on ${PORT}`)
+    });
+} catch (error) {
+    console.error('Unable to connect to the database:', error);
+}
