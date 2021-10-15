@@ -2,6 +2,9 @@ const router = require('express').Router();
 const authController = require('../controllers/auth');
 const passport = require('passport');
 
+router.get('/', (req, res) => {
+	res.render('auth')
+});
 router.get('/google-auth', passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
