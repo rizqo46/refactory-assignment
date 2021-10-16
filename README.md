@@ -17,10 +17,10 @@ JSON data contain in *inventories.js*.  Every problem covered in *json_manipulat
 3. *findFurnitures* cover "Find all the furniture" problem.
 4. *findByDate cover* "Find all items were purchased on 16 Januari 2020" problem.
 5. *findBrownColors* cover "Find all items with brown color" problem.
-## 2. Backend Problem
+## 3. Backend Problem
 For easy testing, frontend part also covered but only in simple way. 
 User data responses will be send in JSON format rather than html views.
-### 2.1 Authentication with Google
+### 3.1 Authentication with Google
 #### Homepage
 #####  Homepage Request <br>
  `GET /` <br>
@@ -50,7 +50,7 @@ Logout button will appear if session cookie valid (if not login with google butt
 #### Server
 #####  Server Flowchart <br>
 ![Image](./images/1.png)
-### 2.2 CLI Application
+### 3.2 CLI Application
 CLI Applcation can get all users login info.<br>
 #### Instalation
 To install globally in your local computer run this command from base repository folder:
