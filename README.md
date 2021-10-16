@@ -23,7 +23,7 @@ User data responses will be send in JSON format rather than html views.
 ### 2.1 Authentication with Google
 #### Homepage
 #####  Homepage Request <br>
- `GET /` Will get the homepage view <br>
+ `GET /` <br>
 #####  Homepage Response <br>
  Homepage view. 
 Logout button will appear if session cookie valid (if not login with google button will appear)<br>
