@@ -1,11 +1,14 @@
 const inventories = require('./inventories');
 
+// For simplicity the functions bellow only return inventory_id and name of the items
+
 function findMeetingRoomItems(inventories) {
     let arr = [];
     for (let i = 0; i < inventories.length; i++) {
         const item = inventories[i];
         if (item.placement.name === "Meeting Room") {
-            arr.push(item)
+            arr.push({inventory_id: item.inventory_id,
+            name: item.name})
         }   
     }
     if (arr.length === 0) {
@@ -19,7 +22,8 @@ function findElectronicDevices(inventories) {
     for (let i = 0; i < inventories.length; i++) {
         const item = inventories[i];
         if (item.type === "electronic") {
-            arr.push(item)
+            arr.push({inventory_id: item.inventory_id,
+            name: item.name})
         }   
     }
     if (arr.length === 0) {
@@ -33,7 +37,8 @@ function findFurnitures(inventories) {
     for (let i = 0; i < inventories.length; i++) {
         const item = inventories[i];
         if ((item.type === "furniture") || (item.tags.includes("furniture"))) {
-            arr.push(item)
+            arr.push({inventory_id: item.inventory_id,
+            name: item.name})
         }   
     }
     if (arr.length === 0) {
@@ -47,7 +52,8 @@ function findBrownColors(inventories) {
     for (let i = 0; i < inventories.length; i++) {
         const item = inventories[i];
         if (item.tags.includes("brown")) {
-            arr.push(item)
+            arr.push({inventory_id: item.inventory_id,
+            name: item.name})
         }   
     }
     if (arr.length === 0) {
@@ -68,7 +74,8 @@ function findByDate(inventories) {
         const year = dateData.getYear();
         
         if ((day === 16) & (month === 0) & (year === (2020-1900))) {
-            arr.push(item)
+            arr.push({inventory_id: item.inventory_id,
+            name: item.name})
         }
     }
     if (arr.length === 0) {
@@ -96,4 +103,13 @@ if (require.main === module) {
 
     console.log('Items with brown color:');
     console.log(findBrownColors(inventories));  
+}
+
+module.exports = {
+    inventories, 
+    findBrownColors, 
+    findByDate, 
+    findFurnitures, 
+    findElectronicDevices, 
+    findMeetingRoomItems
 }
