@@ -42,6 +42,8 @@ const googleAuth = async (req, res) => {
         
         User.findOne({email: payload['email']}).then((currentUser) => {
             if(currentUser){
+                currentUser.lastLogin = Date.now();
+                currentUser.save();
                 req.session.isAuth = true;
                 req.session.email = currentUser.email;
                 req.session.cookie.maxAge = 60*1000;
