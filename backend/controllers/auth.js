@@ -2,6 +2,7 @@ const {OAuth2Client} = require('google-auth-library');
 const User = require('../models/mongoose/user.js');
 require('dotenv').config();
 const CLIENT_ID = process.env.GOOGLE_CLIENTID
+const SESSION_MAXAGE = parseInt(process.env.SESSION_MAXAGE)
 const client = new OAuth2Client(CLIENT_ID);
 
 const homePage = (req, res) => {
@@ -46,7 +47,7 @@ const googleAuth = async (req, res) => {
                 currentUser.save();
                 req.session.isAuth = true;
                 req.session.email = currentUser.email;
-                req.session.cookie.maxAge = 60*1000;
+                req.session.cookie.maxAge = SESSION_MAXAGE;
                 res.json(currentUser)
             } else {
                 new User({
@@ -55,7 +56,7 @@ const googleAuth = async (req, res) => {
                 }).save().then((newUser) => {
                     req.session.isAuth = true;
                     req.session.email = currentUser.email;
-                    req.session.cookie.maxAge = 60*1000;
+                    req.session.cookie.maxAge = SESSION_MAXAGE;
                     res.json(newUser);
                 });
             }
