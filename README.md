@@ -19,7 +19,16 @@ JSON data contain in *inventories.js*.  Every problem covered in *json_manipulat
 5. *findBrownColors* cover "Find all items with brown color" problem.
 ## 3. Backend Problem
 I use javascript for this test. For easy testing, frontend part also covered but only in a simple way. 
-User data responses will be send in JSON format rather than html views.
+User data responses will be send in JSON format rather than html views.<br>
+Plase set following env variable before run the server:
+```
+MONGODB_URI
+GOOGLE_CLIENTID
+GOOGLE_CLIENT_SECRET
+PORT
+SESSION_SECRET
+SESSION_MAXAGE
+```
 ### 3.1 Authentication with Google
 #### Homepage
 #####  Homepage Request <br>
