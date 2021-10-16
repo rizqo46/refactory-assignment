@@ -3,14 +3,14 @@ Created by: M. Abyan Rizqo
 <br><br>
 This repo is the part of Refactory Intensive Probation Assignment for Backend Learning Part.<br>
 ## 1. Logic Test Problem
-Logic test contain in *__logic_test__* folder. Every probelm covered by diverent file.
+I use python for this test. Logic test contain in *__logic_test__* folder. Every probelm covered by diverent file.
 * *fibonacci.py* cover Fibonacci problem
 * *fizzbuzz.py* cover FizzBuzz problem
 * *leapyear.py* cover Leap Year problem
 * *palindrome.py* cover Palindrome problem
 * *reversewords.py* cover Reverse Words problem
 ## 2. JSON Manipulation Problem
-JSON manipulation contain in *__json_manipulation__* folder. 
+I use javasript for this test. JSON manipulation contain in *__json_manipulation__* folder. 
 JSON data contain in *inventories.js*.  Every problem covered in *json_manipulation.js*. Description of every function: 
 1. *findMeetingRoomItems* cover "Find items in the Meeting Room" problem.
 2. *findElectronicDevices* cover "Find all electronic devices" problem.
@@ -18,7 +18,7 @@ JSON data contain in *inventories.js*.  Every problem covered in *json_manipulat
 4. *findByDate cover* "Find all items were purchased on 16 Januari 2020" problem.
 5. *findBrownColors* cover "Find all items with brown color" problem.
 ## 3. Backend Problem
-For easy testing, frontend part also covered but only in simple way. 
+I use javascript for this test. For easy testing, frontend part also covered but only in a simple way. 
 User data responses will be send in JSON format rather than html views.
 ### 3.1 Authentication with Google
 #### Homepage
