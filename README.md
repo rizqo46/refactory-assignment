@@ -28,7 +28,7 @@ User data responses will be send in JSON format rather than html views.
  Homepage view. 
 Logout button will appear if session cookie valid (if not login with google button will appear)<br>
 #####  Homepage Flowchart <br>
-![Image](https://lh3.googleusercontent.com/-8Kot0ZUNGcI/YWow-v5KxVI/AAAAAAAAAAQ/clmC-TvaF8MnSinTWegVsLiMpnmCr9imACLcBGAsYHQ/2.png)
+![Image](./images/2.png)
 #### OAuth Google
 ##### OAuth Request <br>
  `GET /google-auth/` Will get the homepage view <br>
@@ -46,11 +46,10 @@ Logout button will appear if session cookie valid (if not login with google butt
 ```
 
 #####  Oauth Flowchart <br>
-![Image](https://lh3.googleusercontent.com/-p3IgtutN-QQ/YWow-vbJ8dI/AAAAAAAAAAY/cv7oyLtMLaUbDODDtWtC-uq-30IExlyqACLcBGAsYHQ/3.png
-)
+![Image](./images/3.png)
 #### Server
 #####  Server Flowchart <br>
-![Image](https://lh3.googleusercontent.com/-liUOY4IfVag/YWow-leFQDI/AAAAAAAAAAM/lamGkDsQzAclk8AfqOZRMl-CKMdaphBOwCLcBGAsYHQ/1.png)
+![Image](./images/1.png)
 ### 2.2 CLI Application
 CLI Applcation can get all users login info.<br>
 #### Instalation
@@ -80,4 +79,4 @@ Currently there is no user login
 
 ```
 ### Flowchart
-![Image](https://lh3.googleusercontent.com/-laG-ULfs-2Q/YWow-iyzv4I/AAAAAAAAAAU/0QzkAMtJFmgoJ9wuiZ9eZYxrYmOxb0O5gCLcBGAsYHQ/4.png)
+![Image](./images/4.png)
