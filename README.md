@@ -55,7 +55,7 @@ CLI Applcation can get all users login info.<br>
 #### Instalation
 To install globally in your local computer run this command from base repository folder:
 
-  npm i -g ./backend/bin
+    npm i -g ./backend/bin
 ### Run the CLI App
 After instalation, you can run the app by call:<br>
 
